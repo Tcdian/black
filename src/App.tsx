@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import Demo from './components/demo';
+import StateManagement from './components/demo/stateManagement';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Demo></Demo>
+      <StateManagement></StateManagement>
     </div>
   );
 }

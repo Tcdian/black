@@ -1,0 +1,8 @@
+.state-management {
+  display: flex;
+  padding: 20px;
+}
+
+.state-management__display {
+  margin: 0 10px;
+}
