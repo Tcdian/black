@@ -1,0 +1,1 @@
+export const EVENT_EMITTER_DEMO = 'EVENT_EMITTER_DEMO';

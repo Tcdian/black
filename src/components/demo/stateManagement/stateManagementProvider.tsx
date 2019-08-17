@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from 'react';
-import { State, BaseAction, reducer, initialState } from './reducer';
+import { IState, IBaseAction, reducer, initialState } from './reducer';
 
 
 export interface StateManagementContextProps {
-  state: State,
-  dispatch: React.Dispatch<BaseAction>
+  state: IState,
+  dispatch: React.Dispatch<IBaseAction>
 }
 
 export const StateManagementContext = createContext<StateManagementContextProps>({} as StateManagementContextProps);
