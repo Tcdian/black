@@ -1,21 +1,21 @@
 import * as CONTENTS from './contents';
 
-interface IFunc {
+interface Func {
   (...args: any[]): any;
 };
 
-interface IEvents {
-  [propName: string]: IFunc[];
+interface Events {
+  [propName: string]: Func[];
 }
 
-let events: IEvents = {};
-const onceEvents: Set<IFunc> = new Set();
+let events: Events = {};
+const onceEvents: Set<Func> = new Set();
 
-function on(this: any, event: string, listener: IFunc): void {
+function on(this: any, event: string, listener: Func): void {
   addListener.call(this, event, listener);
 }
 
-function once(this: any, event: string, listener: IFunc): void {
+function once(this: any, event: string, listener: Func): void {
   onceEvents.add(listener);
   addListener.call(this, event, listener);
 }
@@ -36,7 +36,7 @@ function emit(this: any, event: string, ...args: any[]): boolean {
   return false;
 }
 
-function addListener(event: string, listener: IFunc): void {
+function addListener(event: string, listener: Func): void {
   if (events.hasOwnProperty(event)) {
     events[event] = [...events[event], listener];
   } else {
@@ -44,7 +44,7 @@ function addListener(event: string, listener: IFunc): void {
   }
 }
 
-function removeListener(event: string, listener: IFunc): void {
+function removeListener(event: string, listener: Func): void {
   if (events.hasOwnProperty(event)) {
     events[event] = events[event].filter((func) => func !== listener);
   }

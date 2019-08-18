@@ -1,17 +1,17 @@
 import produce from 'immer';
 
-export interface IBaseAction {
+export interface BaseAction {
   type: string;
   payload?: any;
 }
 
-export interface IState {
+export interface State {
   display: number;
 }
 
-export const initialState: IState = { display: 0 };
+export const initialState: State = { display: 0 };
 
-export function reducer<T extends IState>(state: T, action: IBaseAction): T {
+export function reducer<T extends State>(state: T, action: BaseAction): T {
   switch (action.type) {
     case 'increment':
       return produce(state, (draft) => {
