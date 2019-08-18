@@ -1,3 +1,5 @@
+import * as CONTENTS from './contents';
+
 interface IFunc {
   (...args: any[]): any;
 };
@@ -6,7 +8,7 @@ interface IEvents {
   [propName: string]: IFunc[];
 }
 
-let events: IEvents = Object.create(null);
+let events: IEvents = {};
 const onceEvents: Set<IFunc> = new Set();
 
 function on(this: any, event: string, listener: IFunc): void {
@@ -50,11 +52,13 @@ function removeListener(event: string, listener: IFunc): void {
 
 function removeAllListeners(event?: string): void {
   if (event === void 0) {
-    events = Object.create(null);
+    events = {};
     return;
   }
   delete events[event];
 }
+
+export { CONTENTS };
 
 export default {
   on,

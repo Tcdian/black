@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
+import StateManagement from 'components/demo/stateManagement';
+import EventEmitter from 'components/demo/eventEmitter';
 
-import StateManagement from './components/demo/stateManagement';
+import './App.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <StateManagement></StateManagement>
+      <StateManagement />
+      <EventEmitter />
     </div>
   );
 }
