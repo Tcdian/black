@@ -4,11 +4,7 @@ interface Func {
   (...args: any[]): any;
 };
 
-interface Events {
-  [propName: string]: Func[];
-}
-
-let events: Events = {};
+let events: Map<string, Func[]> = new Map();
 const onceEvents: Set<Func> = new Set();
 
 function on(this: any, event: string, listener: Func): void {
@@ -21,7 +17,7 @@ function once(this: any, event: string, listener: Func): void {
 }
 
 function emit(this: any, event: string, ...args: any[]): boolean {
-  const listeners = events[event];
+  const listeners = events.get(event);
 
   if (Array.isArray(listeners) && listeners.length !== 0) {
     listeners.forEach((listener) => {
@@ -37,25 +33,25 @@ function emit(this: any, event: string, ...args: any[]): boolean {
 }
 
 function addListener(event: string, listener: Func): void {
-  if (events.hasOwnProperty(event)) {
-    events[event] = [...events[event], listener];
+  if (events.has(event)) {
+    events.set(event, [...events.get(event) as Func[], listener]);
   } else {
-    events[event] = [listener];
+    events.set(event, [listener]);
   }
 }
 
 function removeListener(event: string, listener: Func): void {
-  if (events.hasOwnProperty(event)) {
-    events[event] = events[event].filter((func) => func !== listener);
+  if (events.has(event)) {
+    events.set(event, (events.get(event) as Func[]).filter((func) => func !== listener));
   }
 }
 
 function removeAllListeners(event?: string): void {
   if (event === void 0) {
-    events = {};
+    events.clear();
     return;
   }
-  delete events[event];
+  events.delete(event);
 }
 
 export { CONTENTS };
