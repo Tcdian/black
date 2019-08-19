@@ -4,7 +4,7 @@ interface Func {
   (...args: any[]): any;
 };
 
-let events: Map<string, Func[]> = new Map();
+const events: Map<string, Func[]> = new Map();
 const onceEvents: Set<Func> = new Set();
 
 function on(this: any, event: string, listener: Func): void {
